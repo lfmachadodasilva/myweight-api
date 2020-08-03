@@ -10,8 +10,8 @@ app.set('port', process.env.PORT || 3001);
 app.use(express.json());
 
 // Use routers
-app.get('/', (request, response) => {
-    return response.json({ message: 'Hi!' });
+app.get('/test', (request, response) => {
+  return response.json({ message: 'Hi!' });
 });
 
 export default app;

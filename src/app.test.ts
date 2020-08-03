@@ -2,8 +2,8 @@
 import { User } from './models/user';
 
 describe('Just test', () => {
-    test('it should be ok', () => {
-        const user = { name: 'My Name' } as User;
-        expect(user.name).toEqual('My Name');
-    });
+  test('it should be ok', () => {
+    const user = { name: 'My Name' } as User;
+    expect(user.name).toEqual('My Name');
+  });
 });
