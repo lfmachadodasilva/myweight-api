@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 import { ConnectionOptions } from 'typeorm';
 import dotenv from 'dotenv';
-// eslint-disable-next-line no-unused-vars
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export const getTypeOrmConfiguration = (): ConnectionOptions => {
@@ -30,6 +29,7 @@ export const getTypeOrmConfiguration = (): ConnectionOptions => {
       migrationsDir: 'migration',
       subscribersDir: 'subscriber'
     },
+    // ssl: false
     ssl:
       process.env.NODE_ENV === 'development'
         ? false

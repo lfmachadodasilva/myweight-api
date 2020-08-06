@@ -1,4 +1,4 @@
-export interface AddRecordsDto {
+export interface EditRecordsDto {
   weight: number;
   date: Date;
 }

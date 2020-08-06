@@ -1,21 +1,29 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+
 import { RecordEntity } from '../../entities/record';
+import { GetAllRecordsDto } from './dto';
 
 export class GetAllRecordsCommand {
   async handle(request: Request, response: Response): Promise<Response> {
     try {
-      const repo = getRepository(RecordEntity);
-      const records = await repo.find();
+      const repository = getRepository(RecordEntity);
+      const recordsEntity = await repository.find();
 
-      return response.json({ records: records });
+      const records = recordsEntity.map(r => {
+        return {
+          id: r.id,
+          weight: r.weight,
+          date: r.date
+        } as GetAllRecordsDto;
+      });
+
+      return response.json(records);
     } catch (e) {
-      response.status(400).json({
+      return response.status(400).json({
         message: e.message || 'Unexpected error.'
       });
     }
-
-    return response.status(200).send();
   }
 }
