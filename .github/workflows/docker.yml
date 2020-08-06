@@ -13,10 +13,15 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
 
-      - name: Install & Build 🛠
+      - name: Install & Build & Test 🛠
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY_DEV }}
           FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT_DEV }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST_DEV }}
+          DATABASE_DATABASE: ${{ secrets.DATABASE_DATABASE_DEV }}
+          DATABASE_USER: ${{ secrets.DATABASE_USER_DEV }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT_DEV }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD_DEV }}
         run: |
           envsubst < util/.env.template > .env
           sh scripts/docker-build.sh
@@ -48,6 +53,11 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY_PROD }}
           FIREBASE_PROJECT: ${{ secrets.FIREBASE_PROJECT_PROD }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST_PROD }}
+          DATABASE_DATABASE: ${{ secrets.DATABASE_DATABASE_PROD }}
+          DATABASE_USER: ${{ secrets.DATABASE_USER_PROD }}
+          DATABASE_PORT: ${{ secrets.DATABASE_PORT_PROD }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD_PROD }}
         run: |
           envsubst < util/.env.template > .env
           sh scripts/docker-heroku-prod.sh

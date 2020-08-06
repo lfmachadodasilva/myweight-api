@@ -1,7 +1,7 @@
 #############
 ## Install ##
 #############
-FROM node:14.4.0 as install
+FROM node:14.7.0 as install
 #FROM images.artifactory.dunnhumby.com/node:14.4.0 as install
 
 WORKDIR /app
@@ -37,4 +37,4 @@ FROM build as final
 
 COPY --from=build /app/dist/ ./
 EXPOSE 3001
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]
