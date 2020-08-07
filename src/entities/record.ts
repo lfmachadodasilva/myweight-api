@@ -10,4 +10,7 @@ export class RecordEntity extends BaseEntity {
 
   @Column({ type: 'timestamp without time zone' })
   date?: Date;
+
+  @Column({ type: 'text' })
+  userId?: string;
 }
